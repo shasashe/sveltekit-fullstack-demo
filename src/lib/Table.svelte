@@ -7,7 +7,7 @@
 >
 	<div class="flex items-center justify-between mb-4">
 		<div class="space-y-1">
-			<h2 class="text-xl font-semibold">List of Users</h2>
+			<h2 class="text-xl font-bold">List of Users</h2>
 			<p class="text-sm text-gray-500">
 				Fetched {names.length} users
 			</p>
@@ -17,10 +17,12 @@
 		{#each names as user (user.id)}
 			<div class="flex items-center justify-between py-3">
 				<div class="flex items-center space-x-4">
-					<div class="flex">
-						<p class="font-medium pt-1 leading-none">{user.name}</p>
-						<p class="font-medium pl-5 text-gray-500 pt-0">{user.email}</p>                        
-					</div>
+					<div class="flex items-center space-x-4">
+						<p class="font-medium leading-none">{user.id}</p>
+						<p class="font-medium leading-none">{user.name}</p>
+						<p class="font-medium text-gray-500">{user.email}</p>
+					  </div>
+					  
 				</div>
                 <form method="POST" action="/profiles?/delete">
                 <input type="hidden" name="id" id="id" value={user.id}>

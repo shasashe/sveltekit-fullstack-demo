@@ -13,7 +13,7 @@
 
 <div
   class="mt-10 pt-10 w-full max-w-xl p-12 mx-auto rounded-lg shadow-xl dark:bg-white/10 bg-white/30 ring-1 ring-gray-900/5 backdrop-blur-lg"
->
+>  <p class="font-bold ml text-lg mb-5">Create New User</p>
   <form method="POST" action="?/create">
     <div class="flex flex-wrap -mx-3 mb-2">
       <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
@@ -46,11 +46,6 @@
           name="email"
         />
       </div>
-      <!-- <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
-              Email
-            </label>
-          </div> -->
       <button
         type="submit"
         class="bg-yellow-500 hover:bg-blue-700 text-white font-bold mt-5 ml-2 px-2 rounded "
@@ -60,8 +55,51 @@
     </div>
   </form>
   {#if form?.success}
-    <!-- this message is ephemeral; it exists because the page was rendered in
-		   response to a form submission. it will vanish if the user reloads -->
     <p class="pt-2">Added new Applicant!</p>
+  {/if}
+</div>
+
+
+<div class="mt-10 pt-10 w-full max-w-xl p-12 mx-auto rounded-lg shadow-xl dark:bg-white/10 bg-white/30 ring-1 ring-gray-900/5 backdrop-blur-lg mb-10">
+  <p class="font-bold ml text-lg mb-5">Update Request Block</p>
+
+  <form method="POST" action="?/update">
+    {#each data.names as name}
+      <div class="flex flex-wrap -mx-3 mb-2">
+        <input type="hidden" name="id[]" value={name.id} />
+        <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="name-{name.id}">
+            Name
+          </label>
+          <input
+            class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            id="name-{name.id}"
+            type="text"
+            placeholder="Enter name"
+            name="name[]"
+            value={name.name}
+          />
+        </div>
+        <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="email-{name.id}">
+            Email
+          </label>
+          <input
+            class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            id="email-{name.id}"
+            type="text"
+            placeholder="Enter email"
+            name="email[]"
+            value={name.email}
+          />
+        </div>
+      </div>
+    {/each}
+    <button type="submit" class="bg-yellow-500 hover:bg-blue-700 text-white font-bold mt-5 ml-2 px-2 rounded">
+      Update Applicants
+    </button>
+  </form>
+  {#if form?.success}
+    <p class="pt-2">Updated Applicants!</p>
   {/if}
 </div>
